@@ -42,7 +42,7 @@ BOOL fullscreen = TRUE;
 int showintrodebug = 1;
 int questdebug = -1;
 int debug_mode_key_s;
-int debug_mode_key_w;
+int debug_mode_key_w = 1;
 int debug_mode_key_inverted_v;
 int debug_mode_dollar_sign;
 int debug_mode_key_d;
