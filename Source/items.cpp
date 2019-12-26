@@ -930,6 +930,11 @@ void CreatePlrItems(int p)
 #endif
 	}
 
+	// Give the map of stars on character creation (otherwise no way to get it!)
+	SetPlrHandItem(&plr[p].HoldItem, IDI_MAPOFDOOM);
+	GetPlrHandSeed(&plr[p].HoldItem);
+	AutoPlace(p, 0, 2, 2, TRUE);
+
 	SetPlrHandItem(&plr[p].HoldItem, IDI_GOLD);
 	GetPlrHandSeed(&plr[p].HoldItem);
 
