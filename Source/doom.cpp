@@ -15,6 +15,7 @@ void doom_reset_state()
         DoomQuestState = 0;
     }
 }
+*/
 
 void doom_play_movie()
 {
@@ -26,7 +27,6 @@ void doom_play_movie()
         }
     }
 }
-*/
 
 int doom_get_frame_from_time()
 {
