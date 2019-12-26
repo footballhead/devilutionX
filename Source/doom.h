@@ -10,8 +10,8 @@ extern int DoomQuestState;
 
 /*
 void doom_reset_state();
-void doom_play_movie();
 */
+void doom_play_movie();
 int doom_get_frame_from_time();
 void doom_alloc_cel();
 void doom_cleanup();

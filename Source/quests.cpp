@@ -202,6 +202,10 @@ void CheckQuests()
 			}
 		}
 	}
+
+	// For demonstration purposes, update doom state every tick.
+	// Might have been protected by a quest flag in the past.
+	doom_play_movie();
 #endif
 }
 
