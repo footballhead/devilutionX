@@ -23,7 +23,6 @@ void doom_play_movie()
         DoomQuestState++;
         if (DoomQuestState == 36001) {
             PlayInGameMovie("gendata\\doom.smk");
-            DoomQuestState++;
         }
     }
 }
