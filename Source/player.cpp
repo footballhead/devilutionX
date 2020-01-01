@@ -637,6 +637,9 @@ void CreatePlayer(int pnum, char c)
 		plr[pnum]._pMemSpells = 0;
 	}
 
+	// Add Blood Boil to the memorized spell bitmap so it can be cast
+	plr[pnum]._pMemSpells |= (__int64)1 << (SPL_BLODBOIL - 1);
+
 	for (i = 0; i < sizeof(plr[pnum]._pSplLvl) / sizeof(plr[pnum]._pSplLvl[0]); i++) {
 		plr[pnum]._pSplLvl[i] = 0;
 	}
@@ -646,6 +649,9 @@ void CreatePlayer(int pnum, char c)
 	if (plr[pnum]._pClass == PC_SORCERER) {
 		plr[pnum]._pSplLvl[SPL_FIREBOLT] = 2;
 	}
+
+	// Set Blood Boil spell level so it can be cast
+	plr[pnum]._pSplLvl[SPL_BLODBOIL] = 1;
 
 	// interestingly, only the first three hotkeys are reset
 	// TODO: BUGFIX: clear all 4 hotkeys instead of 3 (demo leftover)

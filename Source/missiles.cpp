@@ -2185,6 +2185,14 @@ void AddNova(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, in
 	missile[mi]._mirange = 1;
 }
 
+// Taken from beta at address .text:004427A4
+void AddBlodBoil(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam)
+{
+	missile[mi]._miVar1 = dx;
+	missile[mi]._miVar2 = dy;
+	missile[mi]._mirange = 1;
+}
+
 void AddRepair(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam)
 {
 	missile[mi]._miDelFlag = TRUE;
