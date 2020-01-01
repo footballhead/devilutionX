@@ -71,7 +71,7 @@ void AddStone(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, i
 void AddGolem(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddEtherealize(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void miss_null_1F(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
-void miss_null_23(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
+void AddBlodbur(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddBoom(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddHeal(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddHealOther(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
@@ -81,6 +81,7 @@ void AddFirewallC(int mi, int sx, int sy, int dx, int dy, int midir, char mienem
 void AddInfra(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddWave(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddNova(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
+void AddBlodboil(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddRepair(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddRecharge(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddDisarm(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
@@ -118,7 +119,7 @@ void MI_Etherealize(int i);
 void MI_Firemove(int i);
 void MI_Guardian(int i);
 void MI_Chain(int i);
-void mi_null_11(int i);
+void MI_Blodbur(int i);
 void MI_Weapexp(int i);
 void MI_Misexp(int i);
 void MI_Acidsplat(int i);
