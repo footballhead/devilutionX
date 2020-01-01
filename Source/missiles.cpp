@@ -1985,7 +1985,7 @@ void miss_null_1F(int mi, int sx, int sy, int dx, int dy, int midir, char mienem
 	missile[mi]._miDelFlag = TRUE;
 }
 
-void miss_null_23(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam)
+void AddBlodbur(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam)
 {
 	missile[mi]._midam = dam;
 	missile[mi]._mix = sx;
@@ -2186,7 +2186,7 @@ void AddNova(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, in
 }
 
 // Taken from beta at address .text:004427A4
-void AddBlodBoil(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam)
+void AddBlodboil(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam)
 {
 	missile[mi]._miVar1 = dx;
 	missile[mi]._miVar2 = dy;
@@ -3368,7 +3368,7 @@ void MI_Chain(int i)
 		missile[i]._miDelFlag = TRUE;
 }
 
-void mi_null_11(int i)
+void MI_Blodbur(int i)
 {
 	missile[i]._mirange--;
 	if (!missile[i]._mirange)
@@ -3760,9 +3760,58 @@ void MI_Nova(int i)
 		missile[i]._miDelFlag = TRUE;
 }
 
+// Taken from Diablo Beta at .text:00448D8E
 void MI_Blodboil(int i)
 {
-	missile[i]._miDelFlag = TRUE;
+	int pnum, dx, dy, mid, splvl;
+
+	pnum = missile[i]._misource;
+	dx = missile[i]._miVar1;
+	dy = missile[i]._miVar2;
+	mid = dMonster[dx][dy];
+
+	if (mid <= 0) {
+		mid = -(mid + 1);
+	} else {
+		--mid;
+	}
+
+	if (mid > 0) {
+		monster[mid]._mhitpoints = 0;
+		M_StartKill(mid, pnum);
+		AddPlrExperience(pnum, monster[mid].mLevel, monster[mid].mExp);
+		dMonster[monster[mid]._mx][monster[mid]._my] = 0;
+		monster[mid]._mDelFlag = TRUE;
+		// TODO: why random_(87, 2) + 1?
+		AddMissile(monster[mid]._mx, monster[mid]._my, monster[mid]._mx, monster[mid]._my, plr[pnum]._pdir, MIS_BLODBUR, 0, pnum, random_(87, 2) + 1, missile[i]._mispllvl);
+		AddDead(monster[mid]._mx, monster[mid]._my, spurtndx, monster[mid]._mdir);
+
+		plr[pnum]._pHitPoints -= monster[mid]._mmaxhp;
+		plr[pnum]._pHPBase -= monster[mid]._mmaxhp;
+		for (splvl = GetSpellLevel(pnum, SPL_BLODBOIL) - 1; splvl > 0; --splvl) {
+			plr[pnum]._pHitPoints += monster[mid]._mmaxhp >> 3;
+			plr[pnum]._pHPBase += monster[mid]._mmaxhp >> 3;
+		}
+
+		if (plr[pnum]._pHitPoints > plr[pnum]._pMaxHP) {
+			plr[pnum]._pHitPoints = plr[pnum]._pMaxHP;
+			plr[pnum]._pHPBase = plr[pnum]._pMaxHPBase;
+		}
+
+		if (plr[pnum]._pHitPoints <= 0) {
+			plr[pnum]._pHitPoints = 0;
+			SyncPlrKill(pnum, 0);
+		} else {
+			StartPlrHit(pnum, monster[mid]._mmaxhp >> 3, 0); // TODO: set force hit?
+		}
+
+		UseMana(pnum, SPL_BLODBOIL);
+	}
+
+	--missile[i]._mirange;
+	if (missile[i]._mirange == 0) {
+		missile[i]._miDelFlag = TRUE;
+	}
 }
 
 void MI_Flame(int i)
