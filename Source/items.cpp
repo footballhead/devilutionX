@@ -930,29 +930,20 @@ void CreatePlrItems(int p)
 #endif
 	}
 
-	SetPlrHandItem(&plr[p].HoldItem, IDI_GOLD);
-	GetPlrHandSeed(&plr[p].HoldItem);
-
-#ifdef _DEBUG
-	if (!debug_mode_key_w) {
-#endif
-		plr[p].HoldItem._ivalue = 100;
-		plr[p].HoldItem._iCurs = ICURS_GOLD_SMALL;
-		plr[p]._pGold = plr[p].HoldItem._ivalue;
-		plr[p].InvList[plr[p]._pNumInv++] = plr[p].HoldItem;
-		plr[p].InvGrid[30] = plr[p]._pNumInv;
-#ifdef _DEBUG
-	} else {
-		plr[p].HoldItem._ivalue = GOLD_MAX_LIMIT;
-		plr[p].HoldItem._iCurs = ICURS_GOLD_LARGE;
-		plr[p]._pGold = plr[p].HoldItem._ivalue * 40;
-		for (i = 0; i < NUM_INV_GRID_ELEM; i++) {
-			GetPlrHandSeed(&plr[p].HoldItem);
-			plr[p].InvList[plr[p]._pNumInv++] = plr[p].HoldItem;
-			plr[p].InvGrid[i] = plr[p]._pNumInv;
-		}
+	// Overwrite potions with full rejuvs (you'll need them for blood boil)
+	for (int i = 0; i < 8; ++i) {
+		SetPlrHandItem(&plr[p].SpdList[i], IDI_FULLREJUV);
+		GetPlrHandSeed(&plr[p].SpdList[i]);
 	}
-#endif
+
+	// Fill inventory with Blood Boil spell books instead of gold
+	for (int i = 0; i < 10; ++i) {
+		SetPlrHandItem(&plr[p].HoldItem, IDI_BOOK);
+		plr[p].HoldItem._iCreateInfo = 0x8000 | (10 << 1); // Reverse-engineered so seed will work
+		plr[p].HoldItem._iSeed = 1728295436; // found through brute force
+		int idx = ((i * 2) % 10) + ((i / 5) * 20);
+		AutoPlace(p, idx, 2, 2, TRUE);
+	}
 
 	CalcPlrItemVals(p, FALSE);
 }
@@ -1121,7 +1112,7 @@ void GetBookSpell(int i, int lvl)
 #endif
 	s = 1;
 	while (rv > 0) {
-		if (spelldata[s].sBookLvl != -1 && lvl >= spelldata[s].sBookLvl) {
+		if (spelldata[s].sBookLvl != -1 && lvl >= spelldata[s].sBookLvl) { // lvl >= 10
 			rv--;
 			bs = s;
 		}
