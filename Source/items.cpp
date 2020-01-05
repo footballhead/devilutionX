@@ -931,8 +931,13 @@ void CreatePlrItems(int p)
 	}
 
 	// Give the map of stars on character creation (otherwise no way to get it!)
+	// It's a unique item. Not sure why that is beyond the gold text.
 	SetPlrHandItem(&plr[p].HoldItem, IDI_MAPOFDOOM);
 	GetPlrHandSeed(&plr[p].HoldItem);
+	// Taken from GetUniqueItem. Like UITYPE_ELIXIR, it doesn't actually have any unique properties.
+	plr[p].HoldItem._iUid = UITYPE_MAPOFDOOM;
+	plr[p].HoldItem._iMagical = ITEM_QUALITY_UNIQUE;
+	plr[p].HoldItem._iCreateInfo |= 0x0200;
 	AutoPlace(p, 0, 2, 2, TRUE);
 
 	SetPlrHandItem(&plr[p].HoldItem, IDI_GOLD);
