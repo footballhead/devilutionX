@@ -2691,10 +2691,8 @@ BOOL PM_DoRangeAttack(int pnum)
 		plr[pnum]._pAnimFrame++;
 	}
 
-	// TODO: random scatter?
-	// TODO: miss arrow at random?
-	// TODO: different speed arrows like rift bow?
-	// TODO: Tf2-esque wind up?
+	// TODO: skip arrow at random?
+	// TODO: different (higher) speed arrows like rift bow?
 
 	auto shootX = plr[pnum]._pVar1;
 	auto shootY = plr[pnum]._pVar2;
@@ -2706,8 +2704,8 @@ BOOL PM_DoRangeAttack(int pnum)
 		// This seems to correspond to existing bow behavior
 		if (dx == 0 && dy == 0) {
 			// Large (for now) to decrease number of iterations
-			dx = 10;
-			dy = 10;
+			dx = 9;
+			dy = 9;
 		}
 
 		// Push the coords to the edge of the screen (if not already there) to get a tighter spread
@@ -2744,6 +2742,7 @@ BOOL PM_DoRangeAttack(int pnum)
 		    0);
 
 		PlaySfxLoc(PS_BFIRE, plr[pnum]._px, plr[pnum]._py);
+		// TODO new sound effect?
 
 		if (WeaponDur(pnum, 40)) {
 			StartStand(pnum, plr[pnum]._pdir);

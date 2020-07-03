@@ -212,8 +212,8 @@ void run_game_loop(unsigned int uMsg)
 		gbGameLoopStartup = FALSE;
 		DrawAndBlit();
 
-		// Fake a repeat
-		// Set to true in AttackXY case (shift held down, using bow)
+		// Fake a repeat. Sorta a hack
+		// sgbRepeatFire is set to true in AttackXY case (shift held down, using bow)
 		if (sgbRepeatFire) {
 			auto const newLParam = ((MouseY & 0xffff) << 16) | (MouseX & 0xffff);
 			PostMessage(DVL_WM_LBUTTONUP, 0, newLParam);
