@@ -42,6 +42,7 @@ int PauseMode;
 int sgnTimeoutCurs;
 char sgbMouseDown;
 int color_cycle_timer;
+bool sgbRepeatFire = false;
 
 /* rdata */
 
@@ -210,6 +211,14 @@ void run_game_loop(unsigned int uMsg)
 		game_loop(gbGameLoopStartup);
 		gbGameLoopStartup = FALSE;
 		DrawAndBlit();
+
+		// Fake a repeat
+		// Set to true in AttackXY case (shift held down, using bow)
+		if (sgbRepeatFire) {
+			auto const newLParam = ((MouseY & 0xffff) << 16) | (MouseX & 0xffff);
+			PostMessage(DVL_WM_LBUTTONUP, 0, newLParam);
+			PostMessage(DVL_WM_LBUTTONDOWN, DVL_MK_LBUTTON | DVL_MK_SHIFT, newLParam);
+		}
 	}
 
 	if (gbMaxPlayers > 1) {
@@ -588,6 +597,7 @@ LRESULT GM_Game(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		gmenu_on_mouse_move();
 		return 0;
 	case DVL_WM_LBUTTONDOWN:
+		SDL_Log("DVL_WM_LBUTTONDOWN\n");
 		GetMousePos(lParam);
 		if (sgbMouseDown == 0) {
 			sgbMouseDown = 1;
@@ -598,6 +608,7 @@ LRESULT GM_Game(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		GetMousePos(lParam);
 		if (sgbMouseDown == 1) {
 			sgbMouseDown = 0;
+			sgbRepeatFire = false;
 			LeftMouseUp();
 			track_repeat_walk(FALSE);
 		}
@@ -723,6 +734,7 @@ BOOL LeftMouseCmd(BOOL bShift)
 		} else if (plr[myplr]._pwtype == WT_RANGED) {
 			if (bShift) {
 				NetSendCmdLoc(TRUE, CMD_RATTACKXY, cursmx, cursmy);
+				sgbRepeatFire = true;
 			} else if (pcursmonst != -1) {
 				if (CanTalkToMonst(pcursmonst)) {
 					NetSendCmdParam1(TRUE, CMD_ATTACKID, pcursmonst);
@@ -1171,7 +1183,10 @@ void PressChar(int vkey)
 		return;
 	case 'Z':
 	case 'z':
-		zoomflag = !zoomflag;
+		// TODO: // DEBUG: Spawn machine bow
+		SpawnUnique(90, plr[myplr]._px, plr[myplr]._py);
+		// DEBUG: Give Identify skill to identify bow
+		plr[myplr]._pAblSpells |= 1 << (SPL_IDENTIFY - 1);
 		return;
 	case 'S':
 	case 's':

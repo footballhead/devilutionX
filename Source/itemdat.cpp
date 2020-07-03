@@ -459,6 +459,8 @@ const UItemStruct UniqueItemList[] = {
 	{  "The Bleeder",             UITYPE_RING,         2,       4,    8500, IPL_MAGICRES,       20,       20, IPL_MANA,            30,       30, IPL_LIFE_CURSE,      10,       10, IPL_INVCURS,          8,        0, IPL_TOHIT,            0,         0, IPL_TOHIT,        0,         0 },
 	{  "Constricting Ring",       UITYPE_RING,         5,       3,   62000, IPL_ALLRES,         75,       75, IPL_DRAINLIFE,        0,        0, IPL_INVCURS,         14,        0, IPL_TOHIT,            0,        0, IPL_TOHIT,            0,         0, IPL_TOHIT,        0,         0 },
 	{  "Ring of Engagement",      UITYPE_RING,        11,       5,   12476, IPL_GETHIT,          1,        2, IPL_THORNS,           1,        3, IPL_SETAC,            5,        5, IPL_TARGAC,           4,       12, IPL_INVCURS,         13,         0, IPL_TOHIT,        0,         0 },
+	// TODO new graphic?
+	{  "Machine Bow",             UITYPE_SHORTBOW,     1,       3,    1800, IPL_RAPID_FIRE,      0,        0, IPL_SETDAM,           1,        1, IPL_SETDUR,         100,      100, IPL_TOHIT,            0,        0, IPL_TOHIT,            0,         0, IPL_TOHIT,        0,         0 },
 	{  "",                        UITYPE_INVALID,      0,       0,       0, IPL_TOHIT,           0,        0, IPL_TOHIT,            0,        0, IPL_TOHIT,            0,        0, IPL_TOHIT,            0,        0, IPL_TOHIT,            0,         0, IPL_TOHIT,        0,         0 },
 	// clang-format on
 };

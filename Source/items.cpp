@@ -1653,6 +1653,9 @@ void SaveItemPower(int i, int power, int param1, int param2, int minval, int max
 		if (item[i]._iPLFR < 0)
 			item[i]._iPLFR = 0;
 		break;
+	case IPL_RAPID_FIRE:
+		item[i]._iFlags |= ISPL_RAPID_FIRE;
+		break;
 	}
 	if (item[i]._iVAdd1 || item[i]._iVMult1) {
 		item[i]._iVAdd2 = PLVal(r, param1, param2, minval, maxval);
@@ -2913,6 +2916,9 @@ void PrintItemPower(char plidx, ItemStruct *x)
 			sprintf(tempstr, " ");
 		else if (x->_iPLFR >= 1)
 			sprintf(tempstr, "Resist Fire : %+i%%", x->_iPLFR);
+		break;
+	case IPL_RAPID_FIRE:
+		sprintf(tempstr, "let 'er rip!");
 		break;
 	default:
 		strcpy(tempstr, "Another ability (NW)");

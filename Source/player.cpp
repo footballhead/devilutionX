@@ -2685,8 +2685,23 @@ BOOL PM_DoRangeAttack(int pnum)
 	if (plr[pnum]._pIFlags & ISPL_FASTATTACK && (origFrame == 1 || origFrame == 3)) {
 		plr[pnum]._pAnimFrame++;
 	}
+	if (plr[pnum]._pIFlags & ISPL_RAPID_FIRE) {
+		plr[pnum]._pAnimFrame++;
+	}
 
-	if (plr[pnum]._pAnimFrame == plr[pnum]._pAFNum) {
+	// TODO further increase animFrame if ISPL_RAPID_FIRE?
+	// TODO: random scatter?
+	// TODO: miss arrow at random?
+	// TODO: different speed arrows like rift bow?
+	// TODO: Tf2-esque wind up?
+	auto shootX = plr[pnum]._pVar1;
+	auto shootY = plr[pnum]._pVar2;
+	if (plr[pnum]._pIFlags & ISPL_RAPID_FIRE) {
+		shootX += random_(0, 3) - 1;
+		shootY += random_(0, 3) - 1;
+	}
+
+	if (plr[pnum]._pAnimFrame == plr[pnum]._pAFNum || (plr[pnum]._pIFlags & ISPL_RAPID_FIRE)) {
 		mistype = MIS_ARROW;
 		if (plr[pnum]._pIFlags & ISPL_FIRE_ARROWS) {
 			mistype = MIS_FARROW;
@@ -2697,8 +2712,8 @@ BOOL PM_DoRangeAttack(int pnum)
 		AddMissile(
 		    plr[pnum]._px,
 		    plr[pnum]._py,
-		    plr[pnum]._pVar1,
-		    plr[pnum]._pVar2,
+		    shootX,
+		    shootY,
 		    plr[pnum]._pdir,
 		    mistype,
 		    0,
