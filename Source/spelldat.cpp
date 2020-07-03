@@ -47,7 +47,7 @@ SpellData spelldata[] = {
 #else
 	{ SPL_APOCA,       150, STYPE_FIRE,      "Apocalypse",      NULL,             -1,        -1, FALSE,     FALSE,          149, IS_CAST2, { MIS_APOCA,         0,          0 },        6,       90,         8,        12,     30000,       2000 },
 #endif
-	{ SPL_ETHEREALIZE, 100, STYPE_MAGIC,     "Etherealize",     NULL,             -1,        -1, FALSE,     FALSE,           93, IS_CAST2, { MIS_ETHEREALIZE,   0,          0 },        0,      100,         2,         6,     26000,       1600 },
+	{ SPL_ETHEREALIZE, 100, STYPE_MAGIC,     "Etherealize",     NULL,             14,        -1, FALSE,     FALSE,           93, IS_CAST2, { MIS_ETHEREALIZE,   0,          0 },       0,      100,         2,         6,     26000,       1600 },
 	{ SPL_REPAIR,        0, STYPE_MAGIC,     "Item Repair",     "Item Repair",    -1,        -1, FALSE,     TRUE,            -1, IS_CAST6, { MIS_REPAIR,        0,          0 },        0,        0,        40,        80,         0,          0 },
 	{ SPL_RECHARGE,      0, STYPE_MAGIC,     "Staff Recharge",  "Staff Recharge", -1,        -1, FALSE,     TRUE,            -1, IS_CAST6, { MIS_RECHARGE,      0,          0 },        0,        0,        40,        80,         0,          0 },
 	{ SPL_DISARM,        0, STYPE_MAGIC,     "Trap Disarm",     "Trap Disarm",    -1,        -1, FALSE,     FALSE,           -1, IS_CAST6, { MIS_DISARM,        0,          0 },        0,        0,        40,        80,         0,          0 },

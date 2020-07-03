@@ -932,6 +932,12 @@ void CreatePlrItems(int p)
 #endif
 	}
 
+	// TODO: Add the Etherealize book to the player's inventory.
+	// To accomplish this, need to:
+	//  1. Set iCreateInfo to 0x8000 so unpack hits GetBookSpell
+	//  2. Manufacture iSeed s.t. GetBookSpell generates the value 25 (SPL_ETHERIALIZE)
+	// The RNG can be reverse-engineered or brute-forced, but I don't feel like doing that right now.
+
 	SetPlrHandItem(&plr[p].HoldItem, IDI_GOLD);
 	GetPlrHandSeed(&plr[p].HoldItem);
 
