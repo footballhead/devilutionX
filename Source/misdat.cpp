@@ -10,7 +10,7 @@ DEVILUTION_BEGIN_NAMESPACE
 /** Data related to each missile ID. */
 MissileData missiledata[] = {
 	// clang-format off
-	// mName,             mAddProc,          mProc,             mDraw, mType, mResist,        mFileNum,       miSFX,       mlSFX;
+	// mName,             mAddProc,          mProc,             mDraw, mType, mResist,        mFileNum,       mlSFX,       miSFX;
 	{  MIS_ARROW,         &AddArrow,         &MI_Arrow,         TRUE,      0, 0,              MFILE_ARROWS,   -1,          -1          },
 	{  MIS_FIREBOLT,      &AddFirebolt,      &MI_Firebolt,      TRUE,      1, MISR_FIRE,      MFILE_FIREBA,   LS_FBOLT1,   LS_FIRIMP2  },
 	{  MIS_GUARDIAN,      &AddGuardian,      &MI_Guardian,      TRUE,      1, 0,              MFILE_GUARD,    LS_GUARD,    LS_GUARDLAN },
@@ -28,9 +28,9 @@ MissileData missiledata[] = {
 	{  MIS_FIREMOVE,      &AddFiremove,      &MI_Firemove,      TRUE,      1, MISR_FIRE,      MFILE_FIREWAL,  -1,          -1          },
 	{  MIS_CHAIN,         &AddChain,         &MI_Chain,         TRUE,      1, MISR_LIGHTNING, MFILE_LGHNING,  LS_LNING1,   LS_ELECIMP1 },
 	{  MIS_SENTINAL,      NULL,              NULL,              TRUE,      1, MISR_LIGHTNING, MFILE_LGHNING,  -1,          -1          },
-	{  MIS_BLODSTAR,      &miss_null_11,     &mi_null_11,       TRUE,      2, 0,              MFILE_BLOOD,    LS_BLODSTAR, LS_BLSIMPT  },
-	{  MIS_BONE,          &miss_null_12,     &mi_null_11,       TRUE,      2, 0,              MFILE_BONE,     -1,          -1          },
-	{  MIS_METLHIT,       &miss_null_13,     &mi_null_11,       TRUE,      2, 0,              MFILE_METLHIT,  -1,          -1          },
+	{  MIS_BLODSTAR,      &miss_null_11,     &MI_Blodbur,       TRUE,      2, 0,              MFILE_BLOOD,    LS_BLODSTAR, LS_BLSIMPT  },
+	{  MIS_BONE,          &miss_null_12,     &MI_Blodbur,       TRUE,      2, 0,              MFILE_BONE,     -1,          -1          },
+	{  MIS_METLHIT,       &miss_null_13,     &MI_Blodbur,       TRUE,      2, 0,              MFILE_METLHIT,  -1,          -1          },
 	{  MIS_RHINO,         &AddRhino,         &MI_Rhino,         TRUE,      2, 0,              MFILE_NONE,     -1,          -1          },
 	{  MIS_MAGMABALL,     &AddMagmaball,     &MI_Firebolt,      TRUE,      1, MISR_FIRE,      MFILE_MAGBALL,  -1,          -1          },
 	{  MIS_LIGHTCTRL2,    &AddLightctrl,     &MI_Lightctrl,     FALSE,     1, MISR_LIGHTNING, MFILE_THINLGHT, -1,          -1          },
@@ -46,7 +46,7 @@ MissileData missiledata[] = {
 	{  MIS_INVISIBL,      NULL,              NULL,              FALSE,     1, 0,              MFILE_NONE,     LS_INVISIBL, -1          },
 	{  MIS_GOLEM,         &AddGolem,         &MI_Golem,         FALSE,     1, 0,              MFILE_NONE,     LS_GOLUM,    -1          },
 	{  MIS_ETHEREALIZE,   &AddEtherealize,   &MI_Etherealize,   TRUE,      1, 0,              MFILE_ETHRSHLD, LS_ETHEREAL, -1          },
-	{  MIS_BLODBUR,       &miss_null_23,     &mi_null_11,       TRUE,      2, 0,              MFILE_BLODBUR,  -1,          -1          },
+	{  MIS_BLODBUR,       &AddBlodbur,       &MI_Blodbur,       TRUE,      2, 0,              MFILE_BLODBUR,  -1,          -1          },
 	{  MIS_BOOM,          &AddBoom,          &MI_Boom,          TRUE,      2, 0,              MFILE_NEWEXP,   -1,          -1          },
 	{  MIS_HEAL,          &AddHeal,          &MI_Dummy,         FALSE,     1, 0,              MFILE_NONE,     -1,          -1          },
 	{  MIS_FIREWALLC,     &AddFirewallC,     &MI_FirewallC,     FALSE,     1, MISR_FIRE,      MFILE_FIREWAL,  -1,          -1          },
@@ -54,7 +54,7 @@ MissileData missiledata[] = {
 	{  MIS_IDENTIFY,      &AddIdentify,      &MI_Dummy,         FALSE,     1, 0,              MFILE_NONE,     -1,          -1          },
 	{  MIS_WAVE,          &AddWave,          &MI_Wave,          TRUE,      1, MISR_FIRE,      MFILE_FIREWAL,  LS_FLAMWAVE, -1          },
 	{  MIS_NOVA,          &AddNova,          &MI_Nova,          TRUE,      1, MISR_LIGHTNING, MFILE_LGHNING,  LS_NOVA,     -1          },
-	{  MIS_BLODBOIL,      &AddBlodboil,      &MI_Blodboil,      TRUE,      1, 0,              MFILE_NONE,     -1,          LS_BLODBOIL },
+	{  MIS_BLODBOIL,      &AddBlodboil,      &MI_Blodboil,      TRUE,      1, 0,              MFILE_NONE,     LS_BLODBOIL, -1          },
 	{  MIS_APOCA,         &AddApoca,         &MI_Apoca,         TRUE,      1, MISR_MAGIC,     MFILE_NEWEXP,   LS_APOC,     -1          },
 	{  MIS_REPAIR,        &AddRepair,        &MI_Dummy,         FALSE,     2, 0,              MFILE_NONE,     -1,          -1          },
 	{  MIS_RECHARGE,      &AddRecharge,      &MI_Dummy,         FALSE,     2, 0,              MFILE_NONE,     -1,          -1          },

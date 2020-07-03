@@ -2537,6 +2537,8 @@ typedef enum _item_indexes {
 	IDI_LGTFORGE,
 	IDI_LAZSTAFF,
 	IDI_RESURRECT,
+	IDI_BOOK = 109,
+	IDI_FULLREJUV = 82
 } _item_indexes;
 
 typedef enum _setlevels {
