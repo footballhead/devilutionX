@@ -2685,18 +2685,40 @@ BOOL PM_DoRangeAttack(int pnum)
 	if (plr[pnum]._pIFlags & ISPL_FASTATTACK && (origFrame == 1 || origFrame == 3)) {
 		plr[pnum]._pAnimFrame++;
 	}
+	// Double attack speed
+	// This only works because (a) we create an arrow each frame and (b) we fake left-clicks to keep attacking
 	if (plr[pnum]._pIFlags & ISPL_RAPID_FIRE) {
 		plr[pnum]._pAnimFrame++;
 	}
 
-	// TODO further increase animFrame if ISPL_RAPID_FIRE?
 	// TODO: random scatter?
 	// TODO: miss arrow at random?
 	// TODO: different speed arrows like rift bow?
 	// TODO: Tf2-esque wind up?
+
 	auto shootX = plr[pnum]._pVar1;
 	auto shootY = plr[pnum]._pVar2;
 	if (plr[pnum]._pIFlags & ISPL_RAPID_FIRE) {
+		auto dx = shootX - plr[pnum]._px;
+		auto dy = shootY - plr[pnum]._py;
+
+		// Cursor is on top of player, give direction to avoid infinite loop
+		// This seems to correspond to existing bow behavior
+		if (dx == 0 && dy == 0) {
+			// Large (for now) to decrease number of iterations
+			dx = 10;
+			dy = 10;
+		}
+
+		// Push the coords to the edge of the screen (if not already there) to get a tighter spread
+		// Using modified euclidean distance (no sqrt) for speed
+		// 200 distance is a total guess
+		while ((shootX - plr[pnum]._px) * (shootX - plr[pnum]._px) + (shootY - plr[pnum]._py) * (shootY - plr[pnum]._py) < 200) {
+			shootX += dx;
+			shootY += dy;
+		}
+
+		// Add variance
 		shootX += random_(0, 3) - 1;
 		shootY += random_(0, 3) - 1;
 	}
