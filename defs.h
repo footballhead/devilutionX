@@ -23,7 +23,7 @@
 #define MAX_LVLMTYPES			16
 // #define MAX_PATH				260
 #define MAX_SEND_STR_LEN		80
-#define MAX_SPELLS				38
+#define MAX_SPELLS				39
 
 #define MAXDEAD					31
 #define MAXDUNX					112

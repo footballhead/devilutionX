@@ -107,6 +107,7 @@ void AddBoneSpirit(int mi, int sx, int sy, int dx, int dy, int midir, char miene
 void AddRportal(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddDiabApoca(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddSalvage(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
+void AddBlazeCtrl(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 int AddMissile(int sx, int sy, int dx, int dy, int midir, int mitype, char micaster, int id, int midam, int spllvl);
 int Sentfire(int i, int sx, int sy);
 void MI_Dummy(int i);
@@ -153,6 +154,7 @@ void MI_Element(int i);
 void MI_Bonespirit(int i);
 void MI_ResurrectBeam(int i);
 void MI_Rportal(int i);
+void MI_BlazeCtrl(int i);
 void ProcessMissiles();
 void missiles_process_charge();
 void ClearMissileSpot(int mi);

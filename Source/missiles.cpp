@@ -202,6 +202,7 @@ void GetDamageAmt(int i, int *mind, int *maxd)
 		*mind = (plr[myplr]._pMagic >> 1) + 3 * sl - (plr[myplr]._pMagic >> 3);
 		*maxd = *mind;
 		break;
+	// TODO: Blaze?
 	}
 }
 
@@ -2476,6 +2477,19 @@ void AddSalvage(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy,
 	}
 }
 
+// Copy of manashield with some stuff removed
+void AddBlazeCtrl(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam)
+{
+	missile[mi]._mirange = 48 * plr[id]._pLevel;
+	if (!mienemy) {
+		UseMana(id, SPL_BLAZE);
+	}
+	missile[mi]._mix = plr[id]._px;
+	missile[mi]._miy = plr[id]._py;
+	missile[mi]._miVar1 = plr[id]._px;
+	missile[mi]._miVar2 = plr[id]._py;
+}
+
 int AddMissile(int sx, int sy, int dx, int dy, int midir, int mitype, char micaster, int id, int midam, int spllvl)
 {
 	int i, mi;
@@ -4131,6 +4145,21 @@ void MI_Rportal(int i)
 		AddUnLight(missile[i]._mlid);
 	}
 	PutMissile(i);
+}
+
+void MI_BlazeCtrl(int i)
+{
+	auto& mis = missile[i];
+	auto const &id = missile[i]._misource;
+	auto const &p = plr[id];
+
+	mis._mix = p._px;
+	mis._miy = p._py;
+	if (mis._mix != mis._miVar1 || mis._miy != mis._miVar2) {
+		AddMissile(mis._miVar1, mis._miVar2, mis._miVar1, mis._miVar2, p._pdir, MIS_FIREWALL, 0, id, 0, missile[i]._mispllvl);
+		mis._miVar1 = mis._mix;
+		mis._miVar2 = mis._miy;
+	}
 }
 
 void ProcessMissiles()

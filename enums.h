@@ -1263,6 +1263,7 @@ typedef enum missile_id {
 	MIS_BOOM2         = 0x42,
 	MIS_DIABAPOCA     = 0x43,
 	MIS_SALVAGE       = 0x44,
+	MIS_BLAZECTRL     = 0x45,
 } missile_id;
 
 typedef enum missile_graphic_id {
@@ -2170,6 +2171,7 @@ typedef enum spell_id {
 	SPL_FLARE       = 0x23,
 	SPL_BONESPIRIT  = 0x24,
 	SPL_SALVAGE     = 0x25,
+	SPL_BLAZE       = 0x26,
 	SPL_INVALID     = -1,
 } spell_id;
 

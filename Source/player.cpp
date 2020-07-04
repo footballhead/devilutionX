@@ -641,6 +641,9 @@ void CreatePlayer(int pnum, char c)
 		plr[pnum]._pMemSpells = 0;
 	}
 
+	// DEBUG: Give Blaze to test
+	plr[pnum]._pMemSpells |= (__int64)1 << (SPL_BLAZE - 1);
+
 	// DEBUG: Add Etherealize to the memorized spell bitmap so it can be cast
 	// plr[pnum]._pMemSpells |= (__int64)1 << (SPL_ETHEREALIZE - 1);
 
@@ -656,6 +659,9 @@ void CreatePlayer(int pnum, char c)
 
 	// DEBUG: Set Etherealize spell level so it can be cast (spell level only affects spell length)
 	// plr[pnum]._pSplLvl[SPL_ETHEREALIZE] = 1;
+
+	// DEBUG: Set Blaze spell level so it can be cast
+	plr[pnum]._pSplLvl[SPL_BLAZE] = 1;
 
 	// interestingly, only the first three hotkeys are reset
 	// TODO: BUGFIX: clear all 4 hotkeys instead of 3 (demo leftover)

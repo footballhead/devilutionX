@@ -68,6 +68,7 @@ SpellData spelldata[] = {
 	// NOTE: Need to modify SpellITbl (control.cpp) for it to draw properly in the spell bar
 	// NOTE: Also need to change MAX_SPELLS
 	{ SPL_SALVAGE,       0, STYPE_MAGIC,     "Salvage",         "Salvage",        -1,        -1, FALSE,     TRUE,            17, IS_CAST6, { MIS_SALVAGE,       0,          0 },        0,        0,        40,        80,         0,          0 },
+	{ SPL_BLAZE,        20, STYPE_FIRE,      "Blaze",           "Blaze",           5,         4,  FALSE,     FALSE,          30, IS_CAST2, { MIS_BLAZECTRL,     0,          0 },        1,       30,        16,        20,      6000,         60 },
 	// clang-format on
 };
 

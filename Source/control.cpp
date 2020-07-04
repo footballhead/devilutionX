@@ -166,6 +166,7 @@ char SpellITbl[MAX_SPELLS] = {
 	36,
 	30,
 	35, // TODO: Custom icon?
+	33, // Blaze
 };
 /** Maps from panel_button_id to the position and dimensions of a panel button. */
 int PanBtnPos[8][5] = {
