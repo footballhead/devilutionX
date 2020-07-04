@@ -106,6 +106,7 @@ void AddTelekinesis(int mi, int sx, int sy, int dx, int dy, int midir, char mien
 void AddBoneSpirit(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddRportal(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 void AddDiabApoca(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
+void AddSalvage(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam);
 int AddMissile(int sx, int sy, int dx, int dy, int midir, int mitype, char micaster, int id, int midam, int spllvl);
 int Sentfire(int i, int sx, int sy);
 void MI_Dummy(int i);

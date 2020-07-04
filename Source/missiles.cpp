@@ -2217,6 +2217,7 @@ void AddRepair(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, 
 				FocusOnInventory();
 		}
 		SetCursor_(CURSOR_REPAIR);
+		doSalvage = false;
 	}
 }
 
@@ -2454,6 +2455,25 @@ void AddDiabApoca(int mi, int sx, int sy, int dx, int dy, int midir, char mienem
 		}
 	}
 	missile[mi]._miDelFlag = TRUE;
+}
+
+void AddSalvage(int mi, int sx, int sy, int dx, int dy, int midir, char mienemy, int id, int dam)
+{
+	missile[mi]._miDelFlag = TRUE;
+	if (id == myplr) {
+		if (sbookflag)
+			sbookflag = FALSE;
+		if (!invflag) {
+			invflag = TRUE;
+			if (sgbControllerActive)
+				FocusOnInventory();
+		}
+		// TODO: New cursor
+		SetCursor_(CURSOR_REPAIR);
+		// Since we don't have a custom cursor, and the cursor is used in TryIconCurs() to perform the appropriate action, we need this separate flag.
+		// TODO: Consider rewriting the cursor code for this?
+		doSalvage = true;
+	}
 }
 
 int AddMissile(int sx, int sy, int dx, int dy, int midir, int mitype, char micaster, int id, int midam, int spllvl)

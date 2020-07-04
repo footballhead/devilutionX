@@ -26,6 +26,8 @@ int cursmy;
 int pcurstemp;
 int pcurs;
 
+bool doSalvage = false;
+
 /* rdata */
 /** Maps from objcurs.cel frame number to frame width. */
 const int InvItemWidth[] = {

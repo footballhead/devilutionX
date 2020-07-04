@@ -64,6 +64,10 @@ SpellData spelldata[] = {
 	{ SPL_FLARE,        25, STYPE_MAGIC,     "Blood Star",      NULL,             -1,        -1, FALSE,     FALSE,           70, IS_CAST2, { MIS_FLARE,         0,          0 },        2,       14,        20,        60,     27500,       1800 },
 	{ SPL_BONESPIRIT,   24, STYPE_MAGIC,     "Bone Spirit",     NULL,             -1,        -1, FALSE,     FALSE,           34, IS_CAST2, { MIS_BONESPIRIT,    0,          0 },        1,       12,        20,        60,     11500,        800 },
 #endif
+	// TODO: Proper salvage missile
+	// NOTE: Need to modify SpellITbl (control.cpp) for it to draw properly in the spell bar
+	// NOTE: Also need to change MAX_SPELLS
+	{ SPL_SALVAGE,       0, STYPE_MAGIC,     "Salvage",         "Salvage",        -1,        -1, FALSE,     TRUE,            17, IS_CAST6, { MIS_SALVAGE,       0,          0 },        0,        0,        40,        80,         0,          0 },
 	// clang-format on
 };
 

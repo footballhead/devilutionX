@@ -788,7 +788,37 @@ BOOL TryIconCurs()
 		return TRUE;
 	} else if (pcurs == CURSOR_REPAIR) {
 		if (pcursinvitem != -1) {
-			DoRepair(myplr, pcursinvitem);
+			if (doSalvage) {
+				auto &p = plr[myplr];
+
+				// Player reward is (currently) EXP
+				// TODO: Tweak amount and scaling. Also, give base amount for worthless, cursed items?
+				// TODO: Gold? Crafting materials?
+				// TODO: Should uniques give something special?
+				auto const &pi = pcursinvitem >= NUM_INVLOC ? p.InvList[pcursinvitem - NUM_INVLOC] : p.InvBody[pcursinvitem];
+				AddPlrExperience(myplr, p._pLevel, pi._iIvalue);
+				
+				// Destroy selected item
+				if (pcursinvitem >= NUM_INVLOC) {
+					RemoveInvItem(myplr, pcursinvitem - NUM_INVLOC);
+				} else {
+					p.InvBody[pcursinvitem]._itype = ITYPE_NONE;
+					// TODO is there a better way? What happens when equipment breaks
+				}
+				// TODO belt items? (SpdList)
+				// TODO items on ground
+
+				// Ask game to recognize the item is gone and adjust damage, AC, etc. accordingly
+				CalcPlrInv(myplr, FALSE);
+
+				// TODO randomly choose from other fkd sfx as well?
+				PlaySfxLoc(IS_SWRDFKD, p._px, p._py);
+
+				doSalvage = false;
+				SetCursor_(CURSOR_HAND);
+			} else {
+				DoRepair(myplr, pcursinvitem);
+			}
 		} else {
 			NewCursor(CURSOR_HAND);
 		}

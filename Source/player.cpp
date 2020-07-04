@@ -631,14 +631,18 @@ void CreatePlayer(int pnum, char c)
 #endif
 	}
 
+	// All classes get Salvage
+	// NOTE: Also needed to add to InitPlayer
+	plr[pnum]._pAblSpells |= (__int64)1 << (SPL_SALVAGE - 1);
+
 	if (c == PC_SORCERER) {
 		plr[pnum]._pMemSpells = 1;
 	} else {
 		plr[pnum]._pMemSpells = 0;
 	}
 
-	// Add Etherealize to the memorized spell bitmap so it can be cast
-	plr[pnum]._pMemSpells |= (__int64)1 << (SPL_ETHEREALIZE - 1);
+	// DEBUG: Add Etherealize to the memorized spell bitmap so it can be cast
+	// plr[pnum]._pMemSpells |= (__int64)1 << (SPL_ETHEREALIZE - 1);
 
 	for (i = 0; i < sizeof(plr[pnum]._pSplLvl) / sizeof(plr[pnum]._pSplLvl[0]); i++) {
 		plr[pnum]._pSplLvl[i] = 0;
@@ -650,9 +654,8 @@ void CreatePlayer(int pnum, char c)
 		plr[pnum]._pSplLvl[SPL_FIREBOLT] = 2;
 	}
 
-	// Set Etherealize spell level so it can be cast
-	// (spell level only affects spell length)
-	plr[pnum]._pSplLvl[SPL_ETHEREALIZE] = 1;
+	// DEBUG: Set Etherealize spell level so it can be cast (spell level only affects spell length)
+	// plr[pnum]._pSplLvl[SPL_ETHEREALIZE] = 1;
 
 	// interestingly, only the first three hotkeys are reset
 	// TODO: BUGFIX: clear all 4 hotkeys instead of 3 (demo leftover)
@@ -919,6 +922,7 @@ void InitPlayer(int pnum, BOOL FirstTime)
 		plr[pnum]._pvid = AddVision(plr[pnum]._px, plr[pnum]._py, plr[pnum]._pLightRad, pnum == myplr);
 	}
 
+	// TODO: Why is this code duplicated?
 	if (plr[pnum]._pClass == PC_WARRIOR) {
 		plr[pnum]._pAblSpells = 1 << (SPL_REPAIR - 1);
 #ifndef SPAWN
@@ -928,6 +932,8 @@ void InitPlayer(int pnum, BOOL FirstTime)
 		plr[pnum]._pAblSpells = 1 << (SPL_RECHARGE - 1);
 #endif
 	}
+
+	plr[pnum]._pAblSpells |= (_int64)1 << (SPL_SALVAGE - 1);
 
 #ifdef _DEBUG
 	if (debug_mode_dollar_sign && FirstTime) {

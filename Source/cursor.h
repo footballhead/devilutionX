@@ -29,6 +29,9 @@ extern int cursmy;
 extern int pcurstemp;
 extern int pcurs;
 
+// Because the cursor graphic (pcurs) is used to determine how to interact with the item, and since we don't have our own cursor, use a disambiguating flag
+extern bool doSalvage;
+
 void InitCursor();
 void FreeCursor();
 void SetICursor(int i);

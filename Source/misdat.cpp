@@ -79,6 +79,7 @@ MissileData missiledata[] = {
 	{  MIS_RPORTAL,       &AddRportal,       &MI_Rportal,       TRUE,      2, 0,              MFILE_RPORTAL,  LS_SENTINEL, LS_ELEMENTL },
 	{  MIS_BOOM2,         &AddBoom,          &MI_Boom,          TRUE,      2, 0,              MFILE_FIREPLAR, -1,          -1          },
 	{  MIS_DIABAPOCA,     &AddDiabApoca,     &MI_Dummy,         FALSE,     2, 0,              MFILE_NONE,     -1,          -1          },
+	{  MIS_SALVAGE,       &AddSalvage,       &MI_Dummy,         FALSE,     1, 0,              MFILE_NONE,     -1,          -1          },
 	// clang-format on
 };
 
