@@ -360,7 +360,7 @@ void InitTowners()
 {
 	numtowners = 0;
 	boyloadflag = FALSE;
-	InitSmith();
+	/*InitSmith();
 	InitHealer();
 	if (quests[Q_BUTCHER]._qactive != QUEST_NOTAVAIL && quests[Q_BUTCHER]._qactive != QUEST_DONE)
 		InitTownDead();
@@ -370,7 +370,7 @@ void InitTowners()
 	InitWitch();
 	InitBarmaid();
 	InitBoy();
-	InitCows();
+	InitCows();*/
 }
 
 void FreeTownerGFX()
