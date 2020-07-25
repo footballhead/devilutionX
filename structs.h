@@ -121,8 +121,8 @@ typedef struct ItemStruct {
 	// item_class enum
 	char _iClass;
 	int _iCurs;
-	int _ivalue;
-	int _iIvalue;
+	int _ivalue; // Shop buy value of item, unidentified
+	int _iIvalue; // Shop buy value of item, identified
 	int _iMinDam;
 	int _iMaxDam;
 	int _iAC;

@@ -796,14 +796,17 @@ BOOL TryIconCurs()
 				// TODO: Gold? Crafting materials?
 				// TODO: Should uniques give something special?
 				auto const &pi = pcursinvitem >= NUM_INVLOC ? p.InvList[pcursinvitem - NUM_INVLOC] : p.InvBody[pcursinvitem];
-				AddPlrExperience(myplr, p._pLevel, pi._iIvalue);
-				
+				auto const &val = pi._iMagical != ITEM_QUALITY_NORMAL && pi._iIdentified ? pi._iIvalue : pi._ivalue;
+				AddPlrExperience(myplr, p._pLevel, val);
+				// TODO: Give player gold (gold is current proxy for crafting materials)
+
+
 				// Destroy selected item
 				if (pcursinvitem >= NUM_INVLOC) {
 					RemoveInvItem(myplr, pcursinvitem - NUM_INVLOC);
 				} else {
 					p.InvBody[pcursinvitem]._itype = ITYPE_NONE;
-					// TODO is there a better way? What happens when equipment breaks
+					// TODO is there a better way? e.g. look at what happens when equipment breaks
 				}
 				// TODO belt items? (SpdList)
 				// TODO items on ground
