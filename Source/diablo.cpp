@@ -871,10 +871,17 @@ void diablo_hotkey_msg(DWORD dwMsg)
 	NetSendCmdString(-1, szMsg);
 }
 
+// TODO: Replace extern with something better
+extern TMenuItem sgOptionsMenu[6];
+
 void ReleaseKey(int vkey)
 {
 	if (vkey == DVL_VK_SNAPSHOT)
 		CaptureScreen();
+	else if (vkey == 'W') {
+		ticks_per_sec = gmenu_slider_get(&sgOptionsMenu[3], 20, 50);
+		tick_delay = 1000 / ticks_per_sec;
+	}
 }
 
 void PressKey(int vkey)
@@ -1084,6 +1091,9 @@ void PressKey(int vkey)
 		msgdelay = 0;
 		gamemenu_off();
 		doom_close();
+	} else if (vkey == 'W') {
+		ticks_per_sec = 50;
+		tick_delay = 1000 / ticks_per_sec;
 	}
 }
 
