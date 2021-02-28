@@ -33,6 +33,7 @@ SpellData spelldata[] = {
 	// sBookCost: In PR Demo, sBookCost is 1000*sBookLvl, which in our case is 2*1000 or 2000
 	// sStaffCost: Staff value is 500*sBookLvl but that doesn't really line up 1:1 with Devilution... So since the book cost is 2*SPL_HEAL.sBookCost, I just took the staff cost to 2*SPL_HEAL.sStaffCost... All in all, not very scientific :P
 	// sStaffMin/sStaffMax: Haven't touched, although it looks like 40-80 is a common placeholder. This column isn't present in either PR Demo or Battle.net Beta (they both have their own formulas in GetStaffSpell)
+	// see https://gitlab.com/moralbacteria/diablo-prdemo-patches/-/wikis/Spells for more info on PR Demo spell behavior
 	{ SPL_BLODRIT,       0, STYPE_MAGIC,     "Blood Ritual",       NULL,              2,         2, FALSE,     FALSE,           21, IS_CAST2, { MIS_BLODRIT,       0,          0 },        0,        0,        40,        80,      2000,        100 },
 	{ SPL_NOVA,         60, STYPE_MAGIC,     "Nova",               NULL,             14,        10, FALSE,     FALSE,           87, IS_CAST4, { MIS_NOVA,          0,          0 },        3,       35,        16,        32,     21000,       1300 },
 	{ SPL_INVISIBIL,     0, STYPE_MAGIC,     "Invisibility",       NULL,             -1,        -1, FALSE,     FALSE,            0, IS_CAST2, { 0,                 0,          0 },        0,        0,        40,        80,         0,          0 },
