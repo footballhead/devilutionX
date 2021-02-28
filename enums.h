@@ -1470,6 +1470,7 @@ typedef enum missile_id {
 	MIS_EXBL2         = 0x69,
 	MIS_EXBL3         = 0x6A,
 	MIS_EXORA1        = 0x6B,
+	MIS_BLODRIT       = 0x6C,
 } missile_id;
 
 typedef enum missile_graphic_id {

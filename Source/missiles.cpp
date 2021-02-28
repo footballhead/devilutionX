@@ -2913,6 +2913,37 @@ void AddHeal(Sint32 mi, Sint32 sx, Sint32 sy, Sint32 dx, Sint32 dy, Sint32 midir
 	drawhpflag = TRUE;
 }
 
+void AddBlodRit(Sint32 mi, Sint32 sx, Sint32 sy, Sint32 dx, Sint32 dy, Sint32 midir, Sint8 mienemy, Sint32 id, Sint32 dam)
+{
+	int mana;
+
+	plr[id]._pHitPoints -= 10 << 6; // << 6 because HP is fixed point with 6 fractional bits
+	plr[id]._pHPBase -= 10 << 6;
+
+	mana = (GetSpellLevel(id, SPL_BLODRIT) + 8) << 6;
+	plr[id]._pMana += mana;
+	plr[id]._pManaBase += mana;
+
+	if (plr[id]._pMana > plr[id]._pMaxMana) {
+		plr[id]._pMana = plr[id]._pMaxMana;
+	}
+
+	if (plr[id]._pManaBase > plr[id]._pMaxManaBase) {
+		plr[id]._pManaBase = plr[id]._pMaxManaBase;
+	}
+
+	if (plr[id]._pHitPoints <= 0) {
+		plr[id]._pHitPoints = 0;
+		if (gbActivePlayers == 1) {
+			SyncPlrKill(id, FALSE);
+		}
+	}
+
+	UseMana(id, SPL_BLODRIT);
+	drawmanaflag = TRUE;
+	drawhpflag = TRUE;
+}
+
 void AddHealOther(Sint32 mi, Sint32 sx, Sint32 sy, Sint32 dx, Sint32 dy, Sint32 midir, Sint8 mienemy, Sint32 id, Sint32 dam)
 {
 	missile[mi]._miDelFlag = TRUE;

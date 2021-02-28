@@ -119,6 +119,7 @@ MissileData missiledata[] = {
 	{  MIS_EXBL2,         &AddMisexp,                 &MI_Misexp,         true,      2, MISR_NONE,      MFILE_EXBL2,     LS_FIRIMP2,  -1          },
 	{  MIS_EXBL3,         &AddMisexp,                 &MI_Misexp,         true,      2, MISR_NONE,      MFILE_EXBL3,     LS_FIRIMP2,  -1          },
 	{  MIS_EXORA1,        &AddMisexp,                 &MI_Misexp,         true,      2, MISR_NONE,      MFILE_EXORA1,    LS_FIRIMP2,  -1          },
+	{  MIS_BLODRIT,       &AddBlodRit,                &MI_Dummy,          false,     1, MISR_NONE,      MFILE_NONE,      -1,          -1          }, // modelled after MIS_HEAL
 	// clang-format on
 };
 
