@@ -778,6 +778,10 @@ void CreatePlayer(int pnum, char c)
 		plr[pnum]._pSplLvl[SPL_FIREBOLT] = 2;
 	}
 
+	// Give new characters Blood Ritual for demo purposes
+	plr[pnum]._pMemSpells = SPELLBIT(SPL_BLODRIT);
+	plr[pnum]._pSplLvl[SPL_BLODRIT] = 1;
+
 	// interestingly, only the first three hotkeys are reset
 	// TODO: BUGFIX: clear all 4 hotkeys instead of 3 (demo leftover)
 	for (i = 0; i < 3; i++) {
