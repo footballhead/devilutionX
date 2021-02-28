@@ -626,24 +626,24 @@ typedef struct TMenuItem {
 //////////////////////////////////////////////////
 
 typedef struct SpellData {
-	unsigned char sName;
-	unsigned char sManaCost;
-	unsigned char sType;
-	const char *sNameText;
-	const char *sSkillText;
-	int sBookLvl;
-	int sStaffLvl;
-	BOOL sTargeted;
-	BOOL sTownSpell;
-	int sMinInt;
-	unsigned char sSFX;
-	unsigned char sMissiles[3];
-	unsigned char sManaAdj;
-	unsigned char sMinMana;
-	int sStaffMin;
-	int sStaffMax;
-	int sBookCost;
-	int sStaffCost;
+	unsigned char sName;		// spelldata index (redundant), see enum spell_id
+	unsigned char sManaCost;	// Base/max mana cost. Influence by slvl (see sManaAdj) and sometimes player level (in case of SPL_HEAL)
+	unsigned char sType;		// Cast animation to play. See enum magic_type
+	const char *sNameText;		// Name shown if on a staff or learned
+	const char *sSkillText;		// Name shown if it's a class skill
+	int sBookLvl;				// dlvl when the book can start appearing
+	int sStaffLvl;				// dlvl when the staff can start appearing
+	BOOL sTargeted;				// ???
+	BOOL sTownSpell;			// can this spell be cast in town
+	int sMinInt;				// The magic required your first book. Increases afterwards (by algorithm?)
+	unsigned char sSFX;			// The sound effect to play on cast, see enum _sfx_id
+	unsigned char sMissiles[3]; // Which missiles to create on cast, up to 3 simultaneously
+	unsigned char sManaAdj;		// slvl discount factor on top of sManaCost
+	unsigned char sMinMana;		// Lower bound of mana cost, overrides sManaCost - slvl*sManaAdj
+	int sStaffMin;				// Lower bound of charges that a staff can have
+	int sStaffMax;				// Upper bound of charges that a staff can have
+	int sBookCost;				// Adria: gold required to buy the book
+	int sStaffCost;				// Adria staff recharge cost?
 } SpellData;
 
 //////////////////////////////////////////////////
